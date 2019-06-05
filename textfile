@@ -1,0 +1,10 @@
+HOST_NAME          STATUS       JL/U    MAX  NJOBS   RUN  SSUSP  USUSP   RSV
+scrm1              ok            -      55    2      2    0      0       0
+scrm2              closed        -      20    16     16   0      0       0
+scrm3		           unavail	     -      13    15     12   0      0       0
+firebird           ok            -      55    2      2    0      0       0
+firebird2          closed        -      20    16     16   0      0       0
+host3		           unavail	     -      13    15     12   0      0       0
+hostg              ok            -      55    2      2    0      0       0
+hosth              closed        -      20    16     16   0      0       0
+hosti		           unreach	     -      13    15     12   0      0       0
