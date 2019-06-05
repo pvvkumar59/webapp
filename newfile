@@ -1,2 +1,65 @@
-##########
-Hi i am vinod currently working as a Git Administartor for 2 years from july 2015 to till now.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <h4>Flask-GoogleCharts Example</h4>
+    <title>Title</title>
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>HOST_NAME</th>
+                <th>STATUS</th>
+                <th>MAX</th>
+                <th>NJOBS</th>
+                <th>RUN</th>
+                <th>USUSP</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>HOST_NAME</th>
+                <th>STATUS</th>
+                <th>MAX</th>
+                <th>NJOBS</th>
+                <th>RUN</th>
+                <th>USUSP</th>
+            </tr>
+        </tfoot>
+</table>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script>
+$( document ).ready(function() {
+    console.log( "ready!" );
+    jQuery.ajax({
+    url: "http://127.0.0.1:5000/get_hosts_status_dict",
+    type: "GET",
+    dataType : "json",
+})
+  .done(function( json ) {
+    $.each(json, function(k, v) {
+    $.each(v, function(k, v) {
+    console.log(k, v);
+    });
+    });
+  })
+  .fail(function( xhr, status, errorThrown ) {
+    alert( "Sorry, there was a problem!" );
+    console.log( "Error: " + errorThrown );
+    console.log( "Status: " + status );
+    console.dir( xhr );
+  })
+  .always(function( xhr, status ) {
+    alert( "The request is complete!" );
+  });
+});
+ </script>
+</table>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</body>
+
+</html>
