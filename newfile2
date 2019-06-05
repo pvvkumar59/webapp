@@ -1,5 +1,58 @@
-#############
-@@@@@@
-$$$$$$$$
-%%%%%%%% Edited by vinod.:wq	
+import os
+from flask import Flask, render_template, jsonify
+import json
+
+
+app = Flask(__name__)
+
+
+def host_status():
+    with open("C:/Users/maswadhama2/PycharmProjects/LSF_automation/lsf_data/bhosts_datafile", 'r') as f:
+        data = f.read()
+        print(data)
+        headers=[]
+        for i in data.splitlines()[0:1]:
+            for w in i.split():
+                headers.append(w)
+        print(headers)
+        values = []
+        for l in data.splitlines()[1:]:
+            for w in l.split('\n'):
+                values.append(w.split())
+        print(values)
+        host_status_dict = []
+
+        for lists in values:
+            for lst in lists:
+                host_status_dict.append(dict(zip(headers, lists)))
+                break
+        print(host_status_dict)
+
+        host_stats = {i['HOST_NAME']: i['STATUS'] for i in host_status_dict}
+        print(host_stats)
+        json_host_data = json.dumps(host_status_dict)
+        print("++++++++++")
+        print(json_host_data)
+        print(type(json_host_data))
+
+        # return host_stats
+        return json_host_data
+
+
+@app.route('/get_hosts_status_dict', methods=['GET'])
+def get_host_status_dict():
+    data = host_status()
+    return data
+
+
+@app.route('/get_hosts_status', methods=['GET'])
+def get_host_status():
+    data = host_status()
+    # return jsonify(data)
+    return render_template("data_template.html")
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 
