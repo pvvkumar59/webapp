@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Demo</title>
+<style>
+#div1 {margin:10px;font-size:1.25em;}
+table {border-collapse:collapse;border:1px solid #7f7f7f;}
+td {border:1px solid #7f7f7f;width:50px;height:50px;text-align:center;}
+</style>
+</head>
+<body >
+
+<div id="div1"></div>
+
+<script>
+var totalRows = 10;
+var cellsInRow = [{"HOST_NAME": "scrm1", "STATUS": "ok", "JL/U": "-", "MAX": "55", "NJOBS": "2", "RUN": "2", "SSUSP": "0", "USUSP": "0", "RSV": "0"}, {"HOST_NAME": "scrm2", "STATUS": "closed", "JL/U": "-", "MAX": "20", "NJOBS": "16", "RUN": "16", "SSUSP": "0", "USUSP": "0", "RSV": "0"}, {"HOST_NAME": "scrm3", "STATUS": "unavail", "JL/U": "-", "MAX": "13", "NJOBS": "15", "RUN": "12", "SSUSP": "0", "USUSP": "0", "RSV": "0"}, {"HOST_NAME": "firebird", "STATUS": "ok", "JL/U": "-", "MAX": "55", "NJOBS": "2", "RUN": "2", "SSUSP": "0", "USUSP": "0", "RSV": "0"}, {"HOST_NAME": "firebird2", "STATUS": "closed", "JL/U": "-", "MAX": "20", "NJOBS": "16", "RUN": "16", "SSUSP": "0", "USUSP": "0", "RSV": "0"}, {"HOST_NAME": "host3", "STATUS": "unavail", "JL/U": "-", "MAX": "13", "NJOBS": "15", "RUN": "12", "SSUSP": "0", "USUSP": "0", "RSV": "0"}, {"HOST_NAME": "hostg", "STATUS": "ok", "JL/U": "-", "MAX": "55", "NJOBS": "2", "RUN": "2", "SSUSP": "0", "USUSP": "0", "RSV": "0"}, {"HOST_NAME": "hosth", "STATUS": "closed", "JL/U": "-", "MAX": "20", "NJOBS": "16", "RUN": "16", "SSUSP": "0", "USUSP": "0", "RSV": "0"}, {"HOST_NAME": "hosti", "STATUS": "unreach", "JL/U": "-", "MAX": "13", "NJOBS": "15", "RUN": "12", "SSUSP": "0", "USUSP": "0", "RSV": "0"}];
+var min = 1;
+var max = 20;
+
+    function drawTable() {
+        // get the reference for the body
+        var div1 = document.getElementById('div1');
+ 
+        // creates a <table> element
+        var tbl = document.createElement("table");
+ 
+        // creating rows
+       for (var r = 0; r < totalRows; r++) {
+            var row = document.createElement("tr");
+	     
+	     // create cells in row
+		for (var key in cellsInRow){
+                var cell = document.createElement("td");
+		 if (cellsInRow[key].STATUS === "ok") {
+          	cell.setAttribute("style", "background-color:red")
+      		}else if(cellsInRow[key].STATUS === "closed"){
+		cell.setAttribute("style", "background-color:green")
+		}else if(cellsInRow[key].STATUS === "unavail"){
+		cell.setAttribute("style", "background-color:yellow")
+		}
+		else{
+		cell.setAttribute("style", "background-color:white")
+		}
+ 		var cellText = document.createTextNode(cellsInRow[key].STATUS);
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+            }           
+            
+	tbl.appendChild(row); // add the row to the end of the table body
+       // }
+    
+     div1.appendChild(tbl); // appends <table> into <div1>
+}
+window.onload=drawTable; 
+</script>
+</body>
+</html>
